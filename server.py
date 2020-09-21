@@ -35,8 +35,8 @@ def store_file(conn, address) -> None:
 
 def server_main():
     s = socket.socket()
-    port = 8080
-    s.bind(('', port))
+    port = 5000
+    s.bind(('127.0.0.1', port))
     s.listen(10)
     while True:
         conn, address = s.accept()
