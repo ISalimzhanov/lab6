@@ -27,7 +27,7 @@ def store_file(conn, address) -> None:
     buff_size = 1024
     data = conn.recv(buff_size)
     while data:
-        file.write(data.decode())
+        file.write(data)
         data = conn.recv(buff_size)
     file.close()
     print(f'Received {fname}. Stored as {new_fname}')
