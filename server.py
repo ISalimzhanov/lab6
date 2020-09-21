@@ -35,7 +35,7 @@ def store_file(conn, address) -> None:
 
 def server_main():
     s = socket.socket()
-    port = 5000
+    port = 6060
     s.bind(('', port))
     s.listen(10)
     while True:
