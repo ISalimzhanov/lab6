@@ -20,6 +20,7 @@ def send_file(file_name: str, host: str, port: int) -> None:
 
     s = socket.socket()
     s.connect((host, port))
+    print(f'Connected to {host} at port {port}')
     s.sendall(len(file_name).to_bytes(1, byteorder='big'))  # sending file_name size
     s.sendall(file_name.encode())  # sending file.txt name
     sent_size = 0
