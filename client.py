@@ -13,9 +13,9 @@ def send_file(file_name: str, host: str, port: int) -> None:
     """
     try:
         file_size = os.path.getsize(file_name)
-        file = open(file_name, 'r')
+        file = open(file_name, 'rb')
     except FileNotFoundError:
-        print('There is no such file.txt')
+        print(f'There is no such {file_name}')
         return
 
     s = socket.socket()
@@ -27,7 +27,7 @@ def send_file(file_name: str, host: str, port: int) -> None:
     buff_size = 1024
     data = file.read(buff_size)
     while data:  # sending file.txt
-        s.send(data.encode())
+        s.send(data)
         data = file.read(buff_size)
         sent_size = min(sent_size + buff_size, file_size)
         print(f'progress: {sent_size}/{file_size} bytes are sent')

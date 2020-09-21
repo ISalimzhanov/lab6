@@ -18,19 +18,19 @@ def store_file(conn, address) -> None:
     # checking is there file.txt with the same file.txt name
     cnt = 0
     new_fname = fname  # new file.txt name
-    file_name_body, file_name_format = fname.split('.')
+    fname_body, fname_format = fname.split('.')
     while os.path.exists(new_fname):
         cnt += 1
-        new_fname = f'{file_name_body}_copy{cnt}.{file_name_format}'
+        new_fname = f'{fname_body}_copy{cnt}.{fname_format}'
     # receiving data
-    file = open(new_fname, 'w')
+    file = open(new_fname, 'wb')
     buff_size = 1024
     data = conn.recv(buff_size)
     while data:
         file.write(data.decode())
         data = conn.recv(buff_size)
     file.close()
-    print(f'Received file.txt. Stored as {new_fname}')
+    print(f'Received {fname}. Stored as {new_fname}')
 
 
 def server_main():
